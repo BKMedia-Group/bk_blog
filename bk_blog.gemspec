@@ -9,7 +9,6 @@ Gem::Specification.new do |s|
   s.version     = BkBlog::VERSION
   s.authors     = ["Josh Horner"]
   s.email       = ["josh@bkmediagroup.com"]
-  s.homepage    = "TODO"
   s.summary     = "bkblog time."
   s.description = "bkblog time."
 
