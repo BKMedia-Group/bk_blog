@@ -1,0 +1,60 @@
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Enter this
+      %th Get this
+  %tbody
+    %tr
+      %td # Header 1
+      %td
+        %h1 Header 1
+    %tr
+      %td ## Header 2
+      %td
+        %h2 Header 2
+    %tr
+      %td ### Header 3
+      %td
+        %h3 Header 3
+    %tr
+      %td #### Header 4
+      %td
+        %h4 Header 4
+    %tr
+      %td this is **bold**
+      %td
+        this is
+        %b bold
+    %tr
+      %td needs *emphasis*
+      %td
+        needs
+        %em emphasis
+    %tr
+      %td
+        * Items
+        %br
+        * In
+        %br
+        * A
+        %br
+        * List
+      %td
+        %ul
+          %li Items
+          %li In
+          %li A
+          %li List
+    %tr
+      %td
+        [click this link](http://www.example.com)
+        %br
+        = "- or -"
+        %br
+        http://www.example.com
+      %td
+        = link_to 'click this link', 'http://www.example.com'
+        %br
+        = "- or -"
+        %br
+        = link_to 'http://www.example.com', 'http://www.example.com'

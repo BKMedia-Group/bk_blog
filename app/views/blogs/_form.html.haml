@@ -1,0 +1,35 @@
+= form_for @blog do |f|
+  = render 'error_messages', object: f.object
+  .row-fluid
+    .span4
+      %p
+        = f.label :title
+        = f.text_field :title
+      %p
+        = f.label :slug
+        = f.text_field :slug
+      %p
+        = f.label :user_id, 'Author'
+        = f.collection_select :user_id, User.all, :id, :name
+      %p
+        = f.label :image
+        = f.file_field :image
+      %p
+        = f.label :published
+        = f.check_box :published
+      %p
+        = f.label :created_at
+        = f.datetime_select :created_at
+    .span8
+      %p
+        = f.label :intro_text
+        = f.text_area :intro_text, style: 'width: 100%', rows: '5'
+      %p
+        = f.label :full_text
+        = f.text_area :full_text, style: 'width: 100%', rows: '20'
+  .row-fluid
+    .span12
+      = f.submit f.object.new_record? ? 'Create Blog' : 'Update Blog'
+      = link_to 'Cancel', manage_blogs_path
+  .row-fluid
+    .span8.offset4= render 'shared/markdown_key'

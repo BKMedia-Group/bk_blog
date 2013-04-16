@@ -1,0 +1,1 @@
+BkBlog::Engine.config.blog_image_styles = { small: ['70x70', :jpg], large: ['250x250', :jpg]}

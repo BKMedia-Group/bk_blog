@@ -1,0 +1,1 @@
+require 'core-ext/string'

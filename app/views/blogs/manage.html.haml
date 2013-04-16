@@ -1,0 +1,11 @@
+%h1 Manage Blog
+%p= link_to 'New Blog', new_blog_path, class: 'btn btn-primary'
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Title
+      %th Author
+      %th Created
+      %th Published
+      %th
+  %tbody= render collection: @blogs, partial: 'blogs/manage'

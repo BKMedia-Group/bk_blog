@@ -1,0 +1,7 @@
+- if blog.image.present?
+  .blogimg= image_tag blog.image.url(:large)
+%h2= blog.title
+%p= blog.intro_text.to_html
+= link_to 'Read More', blog, class: 'btn'
+.clr
+%hr

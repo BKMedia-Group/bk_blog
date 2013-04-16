@@ -1,0 +1,8 @@
+%h1= @blog.title
+%p
+  %em= "Date: #{@blog.date}"
+- if @blog.image.present?
+  .blogimg= image_tag @blog.image.url(:large)
+.lead= @blog.intro_text.to_html
+.full= @blog.full_text.to_html
+.clr

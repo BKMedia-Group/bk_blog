@@ -1,0 +1,9 @@
+.blog
+  .blog-top
+    .blog-image
+      = image_tag small.image.url(:small)
+    .blog-title
+      %h5= small.title
+    .blog-date= small.date
+    .blog-content= small.short_intro
+    = link_to "Read More", small
