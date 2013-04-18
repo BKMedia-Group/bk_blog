@@ -16,9 +16,9 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.9"
-  s.add_dependency "generic_admin"
   s.add_dependency "redcarpet"
   s.add_dependency "paperclip"
+  s.add_dependency "will_paginate"
 
   s.add_development_dependency "sqlite3"
 end

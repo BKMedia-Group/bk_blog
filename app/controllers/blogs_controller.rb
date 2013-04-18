@@ -5,7 +5,7 @@ class BlogsController < ApplicationController
   before_filter :is_admin, except: [:index, :show]
 
   def manage
-    @blogs = Blog.all
+    @blogs = Blog.paginate(page: params[:page], per_page: 50)
   end
   def new
     @blog = current_user.blogs.build
@@ -38,7 +38,7 @@ class BlogsController < ApplicationController
     redirect_to manage_blogs_path
   end
   def index
-    @blogs = Blog.published
+    @blogs = Blog.paginate(page: params[:page], per_page: 10)
   end
   def show
     @blog = Blog.find_by_slug params[:id]

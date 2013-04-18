@@ -7,7 +7,7 @@ class BlogCategoriesController < ApplicationController
 
   def show
     @category = BlogCategory.find_by_slug params[:id]
-    @blogs = @category.blogs
+    @blogs = @category.blogs.paginate(page: params[:page], per_page: 10)
   end
 
   def new

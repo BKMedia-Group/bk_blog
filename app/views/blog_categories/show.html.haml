@@ -1,2 +1,3 @@
-<h1>BlogCategories#show</h1>
-<p>Find me in app/views/blog_categories/show.html.erb</p>
+%h1= @category.name
+%p= @category.description
+= render @blogs
