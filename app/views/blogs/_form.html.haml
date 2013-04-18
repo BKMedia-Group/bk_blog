@@ -9,6 +9,9 @@
         = f.label :slug
         = f.text_field :slug
       %p
+        = f.label :category_id
+        = f.collection_select :category_id, BlogCategory.all, :id, :name
+      %p
         = f.label :user_id, 'Author'
         = f.collection_select :user_id, User.all, :id, :name
       %p

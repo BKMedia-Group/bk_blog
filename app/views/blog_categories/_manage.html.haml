@@ -1,0 +1,6 @@
+%tr
+  %td= manage.name
+  %td= manage.published ? 'Yes' : 'No'
+  %td
+    = link_to 'Edit', edit_blog_category_path(manage), class: 'btn btn-small'
+    = link_to 'Delete', manage, method: :delete, data: {confirm: "You Sure?"}, class: 'btn btn-small btn-danger'

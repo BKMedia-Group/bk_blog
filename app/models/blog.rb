@@ -1,10 +1,12 @@
 class Blog < ActiveRecord::Base
   include ActionView::Helpers::SanitizeHelper
+  include Slugable
 
-  attr_accessible :full_text, :intro_text, :title, :user_id, :slug, :created_at, :published, :image
+  attr_accessible :full_text, :intro_text, :title, :user_id, :created_at, :published, :image, :category_id
   has_attached_file :image, styles: BkBlog::Engine.config.blog_image_styles
 
   belongs_to :user
+  belongs_to :blog_category
 
   scope :published, where({ published: true })
 
@@ -12,9 +14,7 @@ class Blog < ActiveRecord::Base
 
   default_scope ordered
 
-  def to_param
-    slug
-  end
+  validates :full_text, :category_id, :intro_text, :title, presence: true
 
   def author
     user.name

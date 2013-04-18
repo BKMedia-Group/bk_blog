@@ -1,0 +1,10 @@
+- if @category.errors.any?
+  %div{id: "error_explanation"}
+    .alert.alert-error
+      The form contains
+      = pluralize(@category.errors.count, "error") + "."
+    %ul
+      - @category.errors.full_messages.each do |msg|
+        %li
+          *
+          = msg

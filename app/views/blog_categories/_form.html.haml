@@ -1,0 +1,26 @@
+= form_for @category do |f|
+  = render 'error_messages', object: f.object
+  .row-fluid
+    .span4
+      %p
+        = f.label :name
+        = f.text_field :name
+      %p
+        = f.label :slug
+        = f.text_field :slug
+      %p
+        = f.label :image
+        = f.file_field :image
+      %p
+        = f.label :published
+        = f.check_box :published
+    .span8
+      %p
+        = f.label :description
+        = f.text_area :description, style: 'width: 100%', rows: '20'
+  .row-fluid
+    .span12
+      = f.submit f.object.new_record? ? 'Create Blog Category' : 'Update Blog Category'
+      = link_to 'Cancel', manage_blog_categories_path
+  .row-fluid
+    .span8.offset4= render 'shared/markdown_key'
