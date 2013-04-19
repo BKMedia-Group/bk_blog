@@ -29,7 +29,7 @@ class BlogCategoriesController < ApplicationController
   end
 
   def update
-    @category = BlogCategory.find_by_slug params[:slug]
+    @category = BlogCategory.find_by_slug params[:id]
     if @category.update_attributes params[:blog_category]
       flash[:success] = 'Cateogry Updated'
       redirect_to manage_blog_categories_path
