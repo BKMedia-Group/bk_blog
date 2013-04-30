@@ -1,5 +1,4 @@
 class BlogCategoriesController < ApplicationController
-  include SessionsHelper
   before_filter :authenticate_user!, except: [:show, :index]
   def index
     @categories = BlogCategory.greedy
