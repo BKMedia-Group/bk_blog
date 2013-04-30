@@ -2,7 +2,8 @@ class Blog < ActiveRecord::Base
   include ActionView::Helpers::SanitizeHelper
   include Slugable
 
-  attr_accessible :full_text, :intro_text, :title, :user_id, :created_at, :published, :image, :blog_category_id
+  attr_accessible :full_text, :intro_text, :title, :user_id, :created_at, :published, :image,
+                  :blog_category_id, :tag_list
   has_attached_file :image,
                     styles: BkBlog::Engine.config.blog_image_styles,
                     convert_options: BkBlog::Engine.config.blog_image_convert
@@ -36,6 +37,6 @@ class Blog < ActiveRecord::Base
     end
   end
   def tag_list
-    tags.map(&:name).join ', '
+    blog_tags.map(&:name).join ', '
   end
 end

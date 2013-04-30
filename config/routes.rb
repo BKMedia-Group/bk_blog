@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :blog_categories do
     get :manage, on: :collection
   end
+  resources :blog_tags, only: [:index, :show]
 end

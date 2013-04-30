@@ -1,3 +1,30 @@
+:coffee
+  $ ->
+    split = ( val ) ->
+      return val.split( /,\s*/ )
+    extractLast = ( term ) ->
+      return split( term ).pop()
+    $('#blog_tag_list').bind( "keydown", ( ev ) ->
+      if ( event.keyCode == $.ui.keyCode.TAB && $( this ).data( "ui-autocomplete" ).menu.active )
+        event.preventDefault();
+    ).autocomplete
+      minLength: 0,
+      source: (request, response) ->
+        $.getJSON '#{blog_tags_path}', { term: extractLast( request.term ) }, (results) ->
+          terms = new Array()
+          for result in results
+            terms.push(result.name)
+          response terms
+      focus: ->
+        false
+      select: ( event, ui ) ->
+        terms = split( this.value )
+        terms.pop()
+        terms.push( ui.item.value )
+        terms.push( "" )
+        this.value = terms.join( ", " )
+        return false
+
 = form_for @blog do |f|
   = render 'error_messages', object: f.object
   .row-fluid
@@ -9,11 +36,14 @@
         = f.label :slug
         = f.text_field :slug
       %p
+        = f.label :tag_list
+        = f.text_field :tag_list
+      %p
         = f.label :blog_category_id
-        = f.collection_select :blog_category_id, BlogCategory.all, :id, :name
+        = f.collection_select :blog_category_id, BlogCategory.all, :id, :name, prompt: 'select category'
       %p
         = f.label :user_id, 'Author'
-        = f.collection_select :user_id, User.all, :id, :name
+        = f.collection_select :user_id, User.all, :id, :name, prompt: 'select author'
       %p
         = f.label :image
         = f.file_field :image

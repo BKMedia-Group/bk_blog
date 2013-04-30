@@ -8,7 +8,7 @@ class BlogTag < ActiveRecord::Base
 
   before_create :create_slug
 
-  scope :all_with_counts, select('project_tags.*, count(project_tag_refs.project_tag_id) as count').joins(:project_tag_refs).order('project_tags.name').group('project_tags.id')
+  scope :all_with_counts, select('blog_tags.*, count(blog_tag_refs.blog_id) as count').joins(:blog_tag_refs).order('blog_tags.name').group('blog_tags.id')
 
   def to_param
     slug
