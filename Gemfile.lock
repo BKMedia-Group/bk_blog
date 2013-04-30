@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bk_blog (0.0.6)
+    bk_blog (0.0.8)
       paperclip
       rails (~> 3.2.9)
       redcarpet
@@ -55,7 +55,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.22)
+    mime-types (1.23)
     multi_json (1.7.2)
     paperclip (3.4.1)
       activemodel (>= 3.0.0)

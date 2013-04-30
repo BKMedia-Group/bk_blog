@@ -1,6 +1,6 @@
 class BlogCategoriesController < ApplicationController
   include SessionsHelper
-  before_filter :is_admin, except: [:show, :index]
+  before_filter :authenticate_user!, except: [:show, :index]
   def index
     @categories = BlogCategory.greedy
   end
@@ -48,9 +48,4 @@ class BlogCategoriesController < ApplicationController
     flash[:success] = 'Category Destroyed'
     redirect_to manage_blog_categories_path
   end
-
-  private
-    def is_admin
-      redirect_to signin_path, error: "You are not authorized to do this" unless is_admin?
-    end
 end

@@ -2,7 +2,7 @@ class BlogsController < ApplicationController
 
   include SessionsHelper
 
-  before_filter :is_admin, except: [:index, :show]
+  before_filter :authenticate_user!, except: [:index, :show]
 
   def manage
     @blogs = Blog.paginate(page: params[:page], per_page: 50)
@@ -43,24 +43,4 @@ class BlogsController < ApplicationController
   def show
     @blog = Blog.find_by_slug params[:id]
   end
-
-  private
-    def is_admin
-      redirect_to signin_path, error: "You are not authorized to do this" unless is_admin?
-    end
-
-
-  # these will be deleted
-  #def el_mercado_caliente
-  #
-  #end
-  #def the_biggest_beef_exporter_on_earth
-  #end
-  #
-  #def the_protein_markets_of_the_future
-  #end
-  #
-  #def ractopamine_export_restrictions
-  #end
-
 end

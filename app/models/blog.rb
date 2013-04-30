@@ -9,6 +9,8 @@ class Blog < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :blog_category
+  has_many :blog_tag_refs
+  has_many :blog_tags, through: :blog_tag_refs
 
   scope :published, where({ published: true })
 
@@ -16,7 +18,7 @@ class Blog < ActiveRecord::Base
 
   default_scope ordered
 
-  validates :full_text, :blog_category_id, :intro_text, :title, presence: true
+  validates :full_text, :intro_text, :title, presence: true
 
   def author
     user.name
@@ -27,5 +29,13 @@ class Blog < ActiveRecord::Base
   def short_intro
     short = strip_tags intro_text.to_html
     short.length > 100 ? short[0..99]+'...' : short
+  end
+  def tag_list=(names)
+    self.blog_tags = names.split(',').reject {|n| n.strip.length < 1 }.map do |n|
+      BlogTag.where(name: n.strip).first_or_create!
+    end
+  end
+  def tag_list
+    tags.map(&:name).join ', '
   end
 end

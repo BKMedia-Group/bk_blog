@@ -29,5 +29,26 @@ class CreateBlogs < ActiveRecord::Migration
 
     add_index :blog_categories, :slug, unique: true
     add_index :blog_categories, :published
+
+    create_table :blog_tags do |t|
+      t.string :name
+      t.string :slug
+
+      t.timestamps
+    end
+
+    add_index :blog_tags, :name, unique: true
+    add_index :blog_tags, :slug, unique: true
+
+    create_table :blog_tag_refs do |t|
+      t.integer :blog_id
+      t.integer :blog_tag_id
+
+      t.timestamps
+    end
+
+    add_index :blog_tag_refs, :blog_id
+    add_index :blog_tag_refs, :blog_tag_id
+    add_index :blog_tag_refs, [:blog_id, :blog_tag_id], unique: true
   end
 end

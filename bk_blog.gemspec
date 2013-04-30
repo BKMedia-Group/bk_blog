@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.version     = BkBlog::VERSION
   s.authors     = ["Josh Horner"]
   s.email       = ["josh@bkmediagroup.com"]
-  s.summary     = "bkblog time."
-  s.description = "bkblog time."
+  s.summary     = "bkblog time summary."
+  s.description = "bkblog time description."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "redcarpet"
   s.add_dependency "paperclip"
   s.add_dependency "will_paginate"
+  s.add_dependency "devise"
 
   s.add_development_dependency "sqlite3"
 end
