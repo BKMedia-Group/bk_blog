@@ -6,6 +6,6 @@ class BlogTagsController < ApplicationController
   end
   def show
     @tag = BlogTag.find_by_slug! params[:id]
-    @blogs = @tag.blogs
+    @blogs = @tag.blogs.page(params[:page])
   end
 end
