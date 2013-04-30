@@ -15,7 +15,7 @@ class CreateBlogs < ActiveRecord::Migration
 
     add_index :blogs, :published
     add_index :blogs, :slug, unique: true
-    add_index :blogs, :category_id
+    add_index :blogs, :blog_category_id
 
     create_table :blog_categories do |t|
       t.string :name
