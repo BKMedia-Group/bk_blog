@@ -22,7 +22,7 @@ class Blog < ActiveRecord::Base
   validates :full_text, :intro_text, :title, presence: true
 
   def author
-    user.name
+    user.try(:name) || 'Unknown'
   end
   def date
     created_at.strftime '%B %-d, %Y'
