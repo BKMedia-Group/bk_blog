@@ -51,9 +51,17 @@
         %br
         = "- or -"
         %br
+        [_click this link (new window)](http://www.example.com)
+        %br
+        = "- or -"
+        %br
         http://www.example.com
       %td
         = link_to 'click this link', 'http://www.example.com'
+        %br
+        = "- or -"
+        %br
+        = link_to 'click this link (new window)', 'http://www.example.com', target: '_blank'
         %br
         = "- or -"
         %br
