@@ -50,5 +50,15 @@ class CreateBlogs < ActiveRecord::Migration
     add_index :blog_tag_refs, :blog_id
     add_index :blog_tag_refs, :blog_tag_id
     add_index :blog_tag_refs, [:blog_id, :blog_tag_id], unique: true
+
+    create_table :blog_attachments do |t|
+      t.integer :blog_id
+      t.attachment :file
+      t.string :title
+
+      t.timestamps
+    end
+
+    add_index :blog_attachments, :blog_id
   end
 end

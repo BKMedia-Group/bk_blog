@@ -60,6 +60,20 @@
       %p
         = f.label :full_text
         = f.text_area :full_text, style: 'width: 100%', rows: '20'
+      %h4 Attachments
+      = f.fields_for :blog_attachments do |ff|
+        %div{style: 'padding: 10px; margin-bottom: 10px; background-color: #f1f1f1;'}
+          .row-fluid
+            .span4
+              = ff.label :title
+              = ff.text_field :title
+            .span3
+              - if ff.object.persisted?
+                = ff.label :_destroy, 'Delete?'
+                = ff.check_box :_destroy
+              - else
+                = ff.label :file
+                = ff.file_field :file
   .row-fluid
     .span12
       = f.submit f.object.new_record? ? 'Create Blog' : 'Update Blog'

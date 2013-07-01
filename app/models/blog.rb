@@ -3,7 +3,7 @@ class Blog < ActiveRecord::Base
   include Slugable
 
   attr_accessible :full_text, :intro_text, :title, :user_id, :created_at, :published, :image,
-                  :blog_category_id, :tag_list
+                  :blog_category_id, :tag_list, :blog_attachments_attributes
   has_attached_file :image,
                     styles: BkBlog::Engine.config.blog_image_styles,
                     convert_options: BkBlog::Engine.config.blog_image_convert
@@ -12,6 +12,9 @@ class Blog < ActiveRecord::Base
   belongs_to :blog_category
   has_many :blog_tag_refs
   has_many :blog_tags, through: :blog_tag_refs
+  has_many :blog_attachments
+
+  accepts_nested_attributes_for :blog_attachments, reject_if: :all_blank?, allow_destroy: true
 
   scope :published, where({ published: true })
 
