@@ -1,3 +1,3 @@
 module BkBlog
-  VERSION = "0.1.4"
+  VERSION = "0.1.14"
 end
