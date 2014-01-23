@@ -11,7 +11,7 @@ class String
   def to_html
 
 
-    markdown = Redcarpet::Markdown.new(RedcarpetWithExternalLinks, :autolink => true, :space_after_headers => true, :tables => true)
+    markdown = Redcarpet::Markdown.new(RedcarpetWithExternalLinks.new(filter_html: false), :autolink => true, :space_after_headers => true, :tables => true)
     markdown.render(self).html_safe
   end
 end
