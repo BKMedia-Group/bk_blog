@@ -1,6 +1,4 @@
 class BlogTag < ActiveRecord::Base
-  attr_accessible :name, :slug
-
   has_many :blog_tag_refs
   has_many :blogs, through: :blog_tag_refs
 

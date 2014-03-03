@@ -14,7 +14,7 @@ class BlogCategoriesController < ApplicationController
   end
 
   def create
-    @category = BlogCategory.new params[:blog_category]
+    @category = BlogCategory.new blog_category_params
     if @category.save
       flash[:success] = 'Cateogry Created'
       redirect_to manage_blog_categories_path
@@ -29,7 +29,7 @@ class BlogCategoriesController < ApplicationController
 
   def update
     @category = BlogCategory.find_by_slug params[:id]
-    if @category.update_attributes params[:blog_category]
+    if @category.update_attributes blog_category_params
       flash[:success] = 'Cateogry Updated'
       redirect_to manage_blog_categories_path
     else
@@ -46,5 +46,11 @@ class BlogCategoriesController < ApplicationController
     category.destroy
     flash[:success] = 'Category Destroyed'
     redirect_to manage_blog_categories_path
+  end
+
+  private
+
+  def blog_category_params
+    params.require(:blog_category).permit :description, :name, :published, :image, :slug
   end
 end

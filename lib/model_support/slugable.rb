@@ -2,9 +2,8 @@ module Slugable
   extend ActiveSupport::Concern
 
   included do
-    attr_accessible :slug
 
-    validates :slug, format: {with: /^[a-z0-9_]+$/}, uniqueness: true, presence: true
+    validates :slug, format: {with: /\A[a-z0-9_]+\z/}, uniqueness: true, presence: true
 
     before_validation :generate_slug
 

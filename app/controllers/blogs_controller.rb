@@ -8,7 +8,7 @@ class BlogsController < ApplicationController
     @blog = current_user.blogs.build
   end
   def create
-    @blog = Blog.new params[:blog]
+    @blog = Blog.new blog_params
     if @blog.save
       flash[:success] = "Blog created"
       redirect_to manage_blogs_path
@@ -21,7 +21,7 @@ class BlogsController < ApplicationController
   end
   def update
     @blog = Blog.find_by_slug params[:id]
-    if @blog.update_attributes params[:blog]
+    if @blog.update_attributes blog_params
       flash[:success] = 'Blog Updated'
       redirect_to manage_blogs_path
     else
@@ -39,5 +39,12 @@ class BlogsController < ApplicationController
   end
   def show
     @blog = Blog.find_by_slug params[:id]
+  end
+
+  private
+
+  def blog_params
+    params.require(:blog).permit :full_text, :intro_text, :title, :user_id, :created_at, :published, :image, :slug,
+                                 :blog_category_id, :tag_list, {:blog_attachments_attributes => [:file, :title, :id]}
   end
 end
