@@ -42,4 +42,10 @@ class Blog < ActiveRecord::Base
   def tag_list
     blog_tags.map(&:name).join ', '
   end
+  def day
+    created_at.day
+  end
+  def month
+    Date::ABBR_MONTHNAMES[created_at.month]
+  end
 end
