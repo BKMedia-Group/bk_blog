@@ -12,7 +12,7 @@ class Blog < ActiveRecord::Base
   has_many :blog_tags, through: :blog_tag_refs
   has_many :blog_attachments
 
-  accepts_nested_attributes_for :blog_attachments, reject_if: :all_blank?, allow_destroy: true
+  accepts_nested_attributes_for :blog_attachments, reject_if: :all_blank, allow_destroy: true
 
   scope :published, where({ published: true })
 
@@ -21,6 +21,8 @@ class Blog < ActiveRecord::Base
   default_scope ordered
 
   validates :full_text, :intro_text, :title, presence: true
+
+  validates_attachment_content_type :image, :content_type => %w(image/jpeg image/jpg image/png)
 
   def author
     user.try(:name) || 'Unknown'
